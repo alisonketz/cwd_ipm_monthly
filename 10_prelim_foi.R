@@ -29,40 +29,40 @@
 ####################################################################################
 
 #weekly
-ageclass <- as.numeric(levels(as.factor(cwd_df$age_num)))
-ageclass_num <- 1:length(unique(cwd_df$age))
-age_lookupw <- c()
-for (j in 1:4) {
-  age_lookupw <- c(age_lookupw, rep(ageclass_num[j], 52))
-}
-age_lookupw <- c(age_lookupw, rep(ageclass_num[j + 1], 2 * 52))
-age_lookupw <- c(age_lookupw, rep(ageclass_num[j + 2], 3 * 52 - 1))
-remain <- max(cwd_df$ageweeks) - length(age_lookupw)
-age_lookupw <- c(age_lookupw, rep(ageclass_num[j + 3], remain))
-n_agew <- max(age_lookupw)
-age_lookup_f <- age_lookup_m <- age_lookup <- age_lookupw
-age_lookup_m[age_lookup_m==7] <- 6
-n_age <- n_agew
-n_agem <- n_age - 1
-n_agef <- n_age
-
-#monthly
 # ageclass <- as.numeric(levels(as.factor(cwd_df$age_num)))
 # ageclass_num <- 1:length(unique(cwd_df$age))
-# age_lookupm <- c()
+# age_lookupw <- c()
 # for (j in 1:4) {
-#   age_lookupm <- c(age_lookupm, rep(ageclass_num[j], 12))
+#   age_lookupw <- c(age_lookupw, rep(ageclass_num[j], 52))
 # }
-# age_lookupm <- c(age_lookupm, rep(ageclass_num[j + 1], 2 * 12))
-# age_lookupm <- c(age_lookupm, rep(ageclass_num[j + 2], 3 * 12 - 1))
-# remain <- max(cwd_df$agemonths) - length(age_lookupm)
-# age_lookupm <- c(age_lookupm, rep(ageclass_num[j + 3], remain))
-# n_agem <- max(age_lookupm)
-# age_lookup_f <- age_lookup_m <- age_lookupm
-# age_lookup_m[age_lookup_m==7] = 6
-# n_age <- n_agem
+# age_lookupw <- c(age_lookupw, rep(ageclass_num[j + 1], 2 * 52))
+# age_lookupw <- c(age_lookupw, rep(ageclass_num[j + 2], 3 * 52 - 1))
+# remain <- max(cwd_df$ageweeks) - length(age_lookupw)
+# age_lookupw <- c(age_lookupw, rep(ageclass_num[j + 3], remain))
+# n_agew <- max(age_lookupw)
+# age_lookup_f <- age_lookup_m <- age_lookup <- age_lookupw
+# age_lookup_m[age_lookup_m==7] <- 6
+# n_age <- n_agew
 # n_agem <- n_age - 1
 # n_agef <- n_age
+
+#monthly
+ageclass <- as.numeric(levels(as.factor(cwd_df$age_num)))
+ageclass_num <- 1:length(unique(cwd_df$age))
+age_lookupm <- c()
+for (j in 1:4) {
+  age_lookupm <- c(age_lookupm, rep(ageclass_num[j], 12))
+}
+age_lookupm <- c(age_lookupm, rep(ageclass_num[j + 1], 2 * 12))
+age_lookupm <- c(age_lookupm, rep(ageclass_num[j + 2], 3 * 12 - 1))
+remain <- max(cwd_df$agemonths) - length(age_lookupm)
+age_lookupm <- c(age_lookupm, rep(ageclass_num[j + 3], remain))
+n_agem <- max(age_lookupm)
+age_lookup_f <- age_lookup_m <- age_lookupm
+age_lookup_m[age_lookup_m==7] = 6
+n_age <- n_agem
+n_agem <- n_age - 1
+n_agef <- n_age
 
 
 
