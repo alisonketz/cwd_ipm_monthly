@@ -119,53 +119,53 @@ n_agef <- n_age
 ### weekly
 ###
 
-birth_start <- min(cwd_df$birth_date)
-death_end <- max(d_mort$mortdate)
-cwd_df$birthweek <- (lubridate::interval(birth_start,cwd_df$birth_date) %/% weeks(1)) + 1
-# study_start_foi <- head(sort(cwd_df$kill_date),1) from first surveillance data
-study_start_foi <- "1992-05-15"
-cwd_df$weekkill <- (lubridate::interval(study_start_foi,cwd_df$kill_date) %/% weeks(1)) + 1
-cwd_df$yearkill <- cwd_df$kill_year - year(study_start_foi)
-# pre_study_weeks <- (lubridate::interval(birth_start,study_start_foi) %/% weeks(1))+1
-# period_lookup <- sort(rep(unique(cwd_df$yearkill), 52))#for looking up surveillance data
+# birth_start <- min(cwd_df$birth_date)
+# death_end <- max(d_mort$mortdate)
+# cwd_df$birthweek <- (lubridate::interval(birth_start,cwd_df$birth_date) %/% weeks(1)) + 1
+# # study_start_foi <- head(sort(cwd_df$kill_date),1) from first surveillance data
+# study_start_foi <- "1992-05-15"
+# cwd_df$weekkill <- (lubridate::interval(study_start_foi,cwd_df$kill_date) %/% weeks(1)) + 1
+# cwd_df$yearkill <- cwd_df$kill_year - year(study_start_foi)
+# # pre_study_weeks <- (lubridate::interval(birth_start,study_start_foi) %/% weeks(1))+1
+# # period_lookup <- sort(rep(unique(cwd_df$yearkill), 52))#for looking up surveillance data
 
-# as.numeric(ceiling(as.duration(ymd("1992-05-15") %--% ymd("1992-12-31")/dweeks(1))))
-period_lookup <- c(rep(1,33),sort(rep(2:31, 52)))#for looking up surveillance data
-rm_indx <- 52 - interval("2022-01-01",death_end) %/% weeks(1)
-period_lookup <- period_lookup[1:(length(period_lookup)-rm_indx)]
-# period_lookup <- c(rep(1, pre_study_weeks), period_lookup)
-period_lookup_hunt <- period_lookup
-# n_period <- max(period_lookup)
-n_period <- max(period_lookup)-1 #doesn't include spring of 2022
-n_period_lookup <- length(period_lookup)
-n_age_lookup <- length(age_lookup)
-period_lookup_hunt <- period_lookup
-n_period_lookup_hunt <- length(period_lookup_hunt)
+# # as.numeric(ceiling(as.duration(ymd("1992-05-15") %--% ymd("1992-12-31")/dweeks(1))))
+# period_lookup <- c(rep(1,33),sort(rep(2:31, 52)))#for looking up surveillance data
+# rm_indx <- 52 - interval("2022-01-01",death_end) %/% weeks(1)
+# period_lookup <- period_lookup[1:(length(period_lookup)-rm_indx)]
+# # period_lookup <- c(rep(1, pre_study_weeks), period_lookup)
+# period_lookup_hunt <- period_lookup
+# # n_period <- max(period_lookup)
+# n_period <- max(period_lookup)-1 #doesn't include spring of 2022
+# n_period_lookup <- length(period_lookup)
+# n_age_lookup <- length(age_lookup)
+# period_lookup_hunt <- period_lookup
+# n_period_lookup_hunt <- length(period_lookup_hunt)
 
 ###
 ### monthly
 ###
 
-# birth_start <- min(cwd_df$birth_date)
-# death_end <- max(d_mort$mortdate)
-# cwd_df$birthmonth <-(lubridate::interval(birth_start,cwd_df$birth_date) %/% months(1)) + 1
-# # study_start_foi <- head(sort(cwd_df$kill_date),1)
-# study_start_foi <- "1994-01-01"
+birth_start <- min(cwd_df$birth_date)
+death_end <- max(d_mort$mortdate)
+cwd_df$birthmonth <-(lubridate::interval(birth_start,cwd_df$birth_date) %/% months(1)) + 1
+# study_start_foi <- head(sort(cwd_df$kill_date),1)
+study_start_foi <- "1994-05-15"
 
-# cwd_df$monthkill <- (lubridate::interval(study_start_foi,cwd_df$kill_date) %/% months(1)) + 1
-# cwd_df$yearkill <- cwd_df$kill_year - year(study_start_foi) + 1
-# pre_study_months <-(lubridate::interval(birth_start,study_start_foi) %/% months(1))+1
-# period_lookup <- sort(rep(unique(cwd_df$yearkill), 12))
-# #removing months in the lookup vector beyond the month in Feb 2022 with the last date
-# rm_indx <- 12-interval("2022-01-01",death_end) %/% months(1)
-# period_lookup <- period_lookup[1:(length(period_lookup)-rm_indx)]
-# period_lookup <- c(rep(1, pre_study_months), period_lookup)
-# period_lookup_hunt <- period_lookup
-# n_period <- max(period_lookup)
-# n_period_lookup <- length(period_lookup)
-# n_age_lookup <- length(age_lookup)
-# period_lookup_hunt <- period_lookup
-# n_period_lookup_hunt <- length(period_lookup_hunt)
+cwd_df$monthkill <- (lubridate::interval(study_start_foi,cwd_df$kill_date) %/% months(1)) + 1
+cwd_df$yearkill <- cwd_df$kill_year - year(study_start_foi) + 1
+pre_study_months <-(lubridate::interval(birth_start,study_start_foi) %/% months(1))+1
+period_lookup <- sort(rep(unique(cwd_df$yearkill), 12))
+#removing months in the lookup vector beyond the month in Feb 2022 with the last date
+rm_indx <- 12-interval("2022-01-01",death_end) %/% months(1)
+period_lookup <- period_lookup[1:(length(period_lookup)-rm_indx)]
+period_lookup <- c(rep(1, pre_study_months), period_lookup)
+period_lookup_hunt <- period_lookup
+n_period <- max(period_lookup)
+n_period_lookup <- length(period_lookup)
+n_age_lookup <- length(age_lookup)
+period_lookup_hunt <- period_lookup
+n_period_lookup_hunt <- length(period_lookup_hunt)
 
 #############################################################################################
 ###
